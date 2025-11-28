@@ -13,8 +13,8 @@ river <- st_read("River.shp")
 river <- st_union(river)
 river<- st_sf(geometry = st_sfc(river))
 river <- st_zm(river, drop = TRUE, what = "ZM")
-bridges <- st_read("Bridges.shp")
-bridges <- bridges[!st_is_empty(bridges$geometry), ]
+#bridges <- st_read("Bridges.shp")
+#bridges <- bridges[!st_is_empty(bridges$geometry), ]
 bridges <- st_read("bridges_with_LW.shp")
 distance<-st_read("LWDistance.shp")
 captures<-st_read("Captures.shp")
@@ -36,13 +36,13 @@ num_clusters <- length(unique(clusters$CLUSTER_ID))
 pal_clusters <- colorFactor(palette = colorRampPalette(brewer.pal(12, "Paired"))(num_clusters), domain = clusters$CLUSTER_ID)
 cluster_labels<-paste("Cluster", 1:length(num_clusters))
 
-heatmap <- rast("Heatmap.tif")
+heatmap <- rast("Heatmap.compressed.tif")
 heatmap <- project(heatmap, crs(river))
 
 pal_heatmap <- colorNumeric(palette = "inferno", domain = na.omit(values(heatmap)), na.color = "transparent")
 
-slope <- rast("slope.tif")
-aspect <- rast("aspect.tif")
+slope <- rast("slope.compressed.tif")
+aspect <- rast("aspect.compressed.tif")
 
 # Aggregate for Leaflet display (reduce resolution)
 slope_display <- aggregate(slope, fact = 10, fun = mean)
