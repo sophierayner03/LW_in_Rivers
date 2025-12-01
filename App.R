@@ -7,6 +7,8 @@
 ##                                                             ##
 #################################################################
 
+
+#please install these packages and set working directory before running
 #install.packages("shiny")
 #install.packages("leaflet")
 #install.packages("sf")
@@ -24,7 +26,6 @@ library(leaflet)
 library(sf)
 library(raster)
 library(ggplot2)
-#library(ggiraph)
 library(RColorBrewer)
 library(terra)
 library(leafem)
