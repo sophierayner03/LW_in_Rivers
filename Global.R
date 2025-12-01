@@ -13,8 +13,6 @@ river <- st_read("River.shp")
 river <- st_union(river)
 river<- st_sf(geometry = st_sfc(river))
 river <- st_zm(river, drop = TRUE, what = "ZM")
-#bridges <- st_read("Bridges.shp")
-#bridges <- bridges[!st_is_empty(bridges$geometry), ]
 bridges <- st_read("bridges_with_LW.shp")
 distance<-st_read("LWDistance.shp")
 captures<-st_read("Captures.shp")
